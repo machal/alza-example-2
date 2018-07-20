@@ -1,6 +1,4 @@
-# Příklad ke školení Dnešní webová kodéřina
-
-https://www.vzhurudolu.cz/kurzy/webova-koderina
+# Příklad ke školení v Alze 2
 
 **Autor:** Martin Michálek, martin@vzhurudolu.cz
 
@@ -11,55 +9,23 @@ Nejprve si musíte nainstalovat [NPM a celý Node.js ekosystém](http://www.vzhu
 Pak tento konkrétní projekt:
 
 ```bash
-# instalace Gruntu (pokud nemáte)
-npm install -g grunt-cli
+# instalace Gulpu (pokud nemáte)
+npm install --global gulp-cli
 
 # naklonování projektu
-git clone https://github.com/machal/polaroid-example.git
+git clone https://github.com/machal/alza-example-2.git
 
 # skok do adresáře
-cd polaroid-example
+cd alza-example-2
 
 # instalace závislostí
 npm install
 
-# spuštění Gruntu - otevře okno prohlížeče s projektem
+# spuštění Gulpu - otevře okno prohlížeče s projektem
 grunt
 ```
 
-## Závislosti řešíme pomocí NPM
-
-Vývojářské ([Grunt](http://www.vzhurudolu.cz/prirucka/grunt) a [pluginy](http://www.vzhurudolu.cz/prirucka/grunt-pluginy) i uživatelské závislosti (jQuery a jeho pluginy) spravujeme pomocí [NPM](https://www.npmjs.com/). Viz konfigurák [package.json](./package.json).
-
-
-## Sestavování pomocí Grunt.js
-
-Důležité úlohy:
-
-* `grunt` - spustí vše a nastartuje vývojový server, otevře prohlížeč s nastartovanou synchronizací a pustí hlídání změn
-* Pro jednotlivé typy assetů se může hodit `grunt img`, `grunt css`.
-
-Konfigurace je v [Gruntfile.js](./Gruntfile.js) a složce `grunt/`.
-
-
-## Struktura stylů
-
-* `src/css/index.less` – index stylů
-* `src/css/core/` – základy pro CSS: pomocné třídy…
-* `src/css/ui/` –  komponenty uživatelského rozhraní
-* `src/css/layout/` –  rozložení stránky
-
-Kompilujeme pomocí Grunt.js a PostCSS. Výsledkem je soubor `css/index.css`.
-
-
-## Javascript
-
-* `js/index.js` – zdroj
-* `js/script.min.js` – výsledný Grunt.js kompilát
-
-
 ---
-
 
 
 ## Zdroje fotek
