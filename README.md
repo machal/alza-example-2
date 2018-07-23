@@ -22,7 +22,7 @@ cd alza-example-2
 npm install
 
 # spuštění Gulpu - otevře okno prohlížeče s projektem
-grunt
+gulp
 ```
 
 ---
