@@ -1,14 +1,23 @@
 'use strict';
 
-// nastavení
+// Nastavení
+// ---------
+
 var settings = {
   css: {
     source: 'src/less/index.less',
     target: 'dist/css/',
     filename: 'index.css',
     watch: ['src/less/**/*.less'],
+  },
+  svg: {
+    source: 'src/svg/*.svg',
+    target: 'dist/svg/'
   }
 };
+
+// Uložení pluginů do proměnných
+// -----------------------------
 
 // gulp
 var gulp = require('gulp');
@@ -26,9 +35,10 @@ var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
 var flexbugs = require('postcss-flexbugs-fixes');
 var pixrem = require('pixrem');
+// zmenseni SVG
+var svgmin = require('gulp-svgmin');
 // prejmenovani souboru
 var rename = require('gulp-rename');
-
 
 // postCSS pluginy a nastavení
 var postcssPlugins = [
@@ -44,7 +54,11 @@ var onError = function (err) {
   this.emit('end');
 };
 
-// nastavení BrowserSync
+
+// Jednotlivé tasky
+// ----------------
+
+// BrowserSync
 gulp.task('browser-sync', function() {
   browsersync({
     server: './'
@@ -68,11 +82,31 @@ gulp.task('less', function() {
     .pipe(browsersync.reload({ stream: true }));
 });
 
-// sledování změn souborů
+// SVG optimalizace
+gulp.task('svg', function () {
+  return gulp.src(settings.svg.source)
+    .pipe(svgmin({
+        // zachovej odsazeni
+        js2svg: {
+          pretty: true
+        },
+        plugins: [
+          // nespojuj <path> dohromady
+          {
+            mergePaths: false
+          }
+        ]
+      }))
+    .pipe(gulp.dest(settings.svg.target));
+});
+
+// Watch - sledování změn souborů
 gulp.task('watch', ['browser-sync'], function () {
   gulp.watch(settings.css.watch, ['less']);
 });
 
-// aliasy tasků
-// defaultni task
+
+// Aliasy tasků
+// ------------
+
 gulp.task('default', ['watch']);
